@@ -1,9 +1,14 @@
-import Image from 'next/image'
+
+
+import dynamic, { noSSR } from "next/dynamic";
+
+const DynamicMap = dynamic(() => import("@/components/Maps"), {ssr:false})
 
 export default function Home() {
+
   return (
-    <main>
-    
-    </main>
-  )
+    <div>
+      <DynamicMap />
+    </div>
+  );
 }
