@@ -16,6 +16,7 @@ export default function Home() {
 
 
   const [results, setResults] = useState({
+    ipAddress: '-',
     location: "-",
     region: "-",
     postcode: "-",
@@ -25,7 +26,7 @@ export default function Home() {
     lng: -0.09,
   });
 
-  const [ipAddress, setIpAddress] = useState('')
+  const [ipAddress, setIpAddress] = useState('');
   const ipAddressRegex =
     /\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]).){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b/g
 ;
@@ -40,6 +41,7 @@ export default function Home() {
       const data = await response.json();
       console.log(data);
       setResults({
+        ipAddress: ipAddress,
         location: data.location.city,
         region: data.location.region,
         postcode: data.location.postalCode,
@@ -82,7 +84,7 @@ export default function Home() {
         <div className="bg-white text-black mx-6 mt-6 rounded-lg text-center relative top-0 bottom-0 z-50 flex flex-col gap-5 py-6">
           <div>
             <p className="text-dark-gray text-xs font-semibold">IP ADDRESS</p>
-            <p className="text-very-dark-gray font-medium text-lg">{ipAddress}</p>
+            <p className="text-very-dark-gray font-medium text-lg">{results.ipAddress}</p>
           </div>
           <div>
             <p className="text-dark-gray text-xs font-semibold">LOCATION</p>
