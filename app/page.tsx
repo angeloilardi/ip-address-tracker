@@ -19,7 +19,7 @@ export default function Home() {
     ipAddress: '-',
     location: "-",
     region: "-",
-    postcode: "-",
+    country: "-",
     timezone: "-",
     isp: "-",
     lat: 51.505,
@@ -44,7 +44,7 @@ export default function Home() {
         ipAddress: data.ip,
         location: data.location.city,
         region: data.location.region,
-        postcode: data.location.postalCode,
+        country: data.location.country,
         timezone: data.location.timezone,
         isp: data.isp,
         lat: data.location.lat,
@@ -89,7 +89,7 @@ export default function Home() {
           <div>
             <p className="text-dark-gray text-xs font-semibold">LOCATION</p>
             <p className="text-very-dark-gray font-medium text-lg">
-              {results.location}, {results.region}, {results.postcode}
+              {results.location}, {results.region}, {results.country}
             </p>
           </div>
           <div>
