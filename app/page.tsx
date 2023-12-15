@@ -4,7 +4,7 @@ import dynamic, { noSSR } from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 
 
-export default function Home(coords: number[]) {
+export default function Home() {
 
   const DynamicMap = useMemo(() => dynamic(
     () => import('@/components/Maps'),
