@@ -41,7 +41,7 @@ export default function Home() {
       const data = await response.json();
       console.log(data);
       setResults({
-        ipAddress: ipAddress,
+        ipAddress: data.ip,
         location: data.location.city,
         region: data.location.region,
         postcode: data.location.postalCode,
