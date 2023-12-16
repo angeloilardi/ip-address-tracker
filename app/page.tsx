@@ -83,25 +83,28 @@ export default function Home() {
           </button>
         </div>
         <div className="bg-white text-black mx-6 mt-6 rounded-lg text-center relative top-0 bottom-0 z-50 flex flex-col gap-5 py-6 md:flex-row md:text-left md:justify-evenly md:items-start ">
-          <div className="md:px-[30px] md:py-10 flex-1 md:w-[25%]">
+          <div className="md:px-[30px] md:py-10 flex-1 md:w-[24%]">
             <p className="text-dark-gray text-xs font-semibold">IP ADDRESS</p>
             <p className="text-very-dark-gray font-medium text-lg md:text-2xl">
               {results.ipAddress}
             </p>
           </div>
-          <div className="md:px-[30px] md:py-10 md:border-l-2 flex-1 md:w-[25%]">
+          <div className="h-20 w-px bg-dark-gray hidden md:block self-center "></div>
+          <div className="md:px-[30px] md:py-10 flex-1 md:w-[24%]">
             <p className="text-dark-gray text-xs font-semibold">LOCATION</p>
             <p className="text-very-dark-gray font-medium text-lg md:text-2xl">
               {results.location}, {results.region}, {results.country}
             </p>
           </div>
-          <div className="md:px-[30px] md:py-10 md:border-l-2 flex-1 md:w-[25%]">
+          <div className="h-20 w-px bg-dark-gray hidden md:block self-center"></div>
+          <div className="md:px-[30px] md:py-10 flex-1 md:w-[24%]">
             <p className="text-dark-gray text-xs font-semibold">TIMEZONE</p>
             <p className="text-very-dark-gray font-medium text-lg md:text-2xl">
               UTC {results.timezone}
             </p>
           </div>
-          <div className="md:px-[30px] md:py-10 md:border-l-2 flex-1 md:w-[25%]">
+          <div className="h-20 w-px bg-dark-gray hidden md:block self-center"></div>
+          <div className="md:px-[30px] md:py-10 flex-1 md:w-[24%]">
             <p className="text-dark-gray text-xs font-semibold">ISP</p>
             <p className="text-very-dark-gray font-medium text-lg md:text-2xl">
               {results.isp}
