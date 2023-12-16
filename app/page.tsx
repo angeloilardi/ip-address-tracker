@@ -76,7 +76,7 @@ export default function Home() {
           />
           <button
             type="submit"
-            className="w-[60px] bg-black rounded-r-lg flex items-center justify-center"
+            className="w-[60px] bg-black rounded-r-lg flex items-center justify-center hover:bg-very-dark-gray"
             onClick={fetchData}
           >
             <Image src="/images/icon-arrow.svg" width={15} height={15} alt="" />
