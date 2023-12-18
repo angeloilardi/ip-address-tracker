@@ -35,9 +35,8 @@ export default function Home() {
     /^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$/;
 
   const fetchData = async () => {
-    console.log(input);
     if (ipAddressRegex.test(input) || input === "") {
-      console.log("match");
+      setIsValid(true)
       const response = await fetch(
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&ipAddress=${input}`
       );
@@ -54,7 +53,7 @@ export default function Home() {
         lng: data.location.lng,
       });
     } else if (domainRegex.test(input)) {
-      console.log("match");
+      setIsValid(true);
       const response = await fetch(
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&domain=${input}`
       );
