@@ -8,11 +8,11 @@ export default function Home() {
 
   const DynamicMap = useMemo(() => dynamic(
     () => import('@/components/Maps'),
-    { 
+    {
       loading: () => <p>A map is loading</p>,
       ssr: false
     }
-  ), [])
+  ), []);
 
 
   const [results, setResults] = useState({
@@ -26,17 +26,20 @@ export default function Home() {
     lng: -0.09,
   });
 
-  const [ipAddress, setIpAddress] = useState('');
+  const [input, setInput] = useState('');
+  const [isValid, setIsValid] = useState(true)
   const ipAddressRegex =
     /\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]).){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b/g
-;
+    ;
+  const domainRegex =
+    /^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$/;
 
   const fetchData = async () => {
-    console.log(ipAddress);
-    if (ipAddressRegex.test(ipAddress) || ipAddress === "") {
-      console.log('match');
+    console.log(input);
+    if (ipAddressRegex.test(input) || input === "") {
+      console.log("match");
       const response = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&ipAddress=${ipAddress}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&ipAddress=${input}`
       );
       const data = await response.json();
       console.log(data);
@@ -50,7 +53,27 @@ export default function Home() {
         lat: data.location.lat,
         lng: data.location.lng,
       });
-    } else console.log('no match');; 
+    } else if (domainRegex.test(input)) {
+      console.log("match");
+      const response = await fetch(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&domain=${input}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setResults({
+        ipAddress: data.ip,
+        location: data.location.city,
+        region: data.location.region,
+        country: data.location.country,
+        timezone: data.location.timezone,
+        isp: data.isp,
+        lat: data.location.lat,
+        lng: data.location.lng,
+      });
+    } else {
+      setIsValid(false)
+      console.log('no match')
+    }
     
   };
 
@@ -69,8 +92,8 @@ export default function Home() {
             type="text"
             name="ip-address"
             id="ip-address"
-            onChange={(e) => setIpAddress(e.target.value)}
-            className="rounded-s-lg w-full text-very-dark-gray"
+            onChange={(e) => setInput(e.target.value)}
+            className="rounded-s-lg w-full text-very-dark-gray form-input"
             placeholder="Search for an IP address or domain"
             // pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)_*(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)_*){3}"
           />
@@ -82,6 +105,14 @@ export default function Home() {
             <Image src="/images/icon-arrow.svg" width={15} height={15} alt="" />
           </button>
         </div>
+        <p
+          className={`ml-6 mt-3 max-w-[556px] mx-auto text-sm text-center ${
+            isValid ? "hidden" : "block"
+          } text-red-600 font-bold`}
+        >
+          Enter a valid IP Address or domain!
+        </p>
+
         <div className="bg-white text-black mx-6 mt-6 rounded-lg text-center relative top-0 bottom-0 z-50 flex flex-col gap-5 py-6 md:flex-row md:text-left md:justify-evenly md:items-start ">
           <div className="md:px-[30px] md:py-10 flex-1 md:w-[24%]">
             <p className="text-dark-gray text-xs font-semibold">IP ADDRESS</p>
