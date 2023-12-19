@@ -26,7 +26,7 @@ export default function Home() {
     lng: -0.09,
   });
 
-  const [error, setError] = useState("Enter a valid IP Address or domain!");
+  const [error, setError] = useState("");
 
   const [input, setInput] = useState('');
   const [isValid, setIsValid] = useState(true)
@@ -112,7 +112,7 @@ export default function Home() {
  }
     } else {
       setIsValid(false)
-      console.log('no match')
+      setError("Enter a valid IP Address or domain!");
     }
     
   };
