@@ -26,6 +26,8 @@ export default function Home() {
     lng: -0.09,
   });
 
+  const [error, setError] = useState("Enter a valid IP Address or domain!");
+
   const [input, setInput] = useState('');
   const [isValid, setIsValid] = useState(true)
 
@@ -54,8 +56,6 @@ export default function Home() {
   };
 
     useEffect(() => {
-      console.log("run");
-      // console.log(results.ipAddress);
       fetchInitialData();
     }, []);
   
@@ -74,6 +74,8 @@ export default function Home() {
       const response = await fetch(
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&ipAddress=${input}`
       );
+
+
       const data = await response.json();
       console.log(data);
       setResults({
@@ -91,18 +93,23 @@ export default function Home() {
       const response = await fetch(
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&domain=${input.toLowerCase()}`
       );
-      const data = await response.json();
-      console.log(data);
-      setResults({
-        ipAddress: data.ip,
-        location: data.location.city,
-        region: data.location.region,
-        country: data.location.country,
-        timezone: data.location.timezone,
-        isp: data.isp,
-        lat: data.location.lat,
-        lng: data.location.lng,
-      });
+      if (!response.ok) {
+   setIsValid(false)
+   setError('Domain not found, try again!')
+ } else {
+   const data = await response.json();
+   console.log(data);
+   setResults({
+     ipAddress: data.ip,
+     location: data.location.city,
+     region: data.location.region,
+     country: data.location.country,
+     timezone: data.location.timezone,
+     isp: data.isp,
+     lat: data.location.lat,
+     lng: data.location.lng,
+   });
+ }
     } else {
       setIsValid(false)
       console.log('no match')
@@ -135,11 +142,11 @@ export default function Home() {
           </button>
         </div>
         <p
-          className={`ml-6 mt-3 max-w-[556px] mx-auto text-sm text-center ${
+          className={`mt-3 max-w-[556px] mx-auto text-sm text-center ${
             isValid ? "hidden" : "block"
-          } text-red-600 font-bold`}
+          } text-white outline-double font-bold`}
         >
-          Enter a valid IP Address or domain!
+          {error}
         </p>
 
         <div className="bg-white text-black mx-6 mt-6 rounded-lg text-center relative top-0 bottom-0 z-50 flex flex-col gap-5 py-6 md:flex-row md:text-left md:justify-evenly md:items-start ">
@@ -177,8 +184,5 @@ export default function Home() {
       </div>
     </div>
   );
-}
-function fetchInitialhData() {
-  throw new Error("Function not implemented.");
 }
 
