@@ -28,6 +28,40 @@ export default function Home() {
 
   const [input, setInput] = useState('');
   const [isValid, setIsValid] = useState(true)
+
+  async function fetchInitialData() {
+    const response = await fetch(
+      `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&ipAddress=`
+    );
+    if (!response.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    } else {
+      const data = await response.json();
+      console.log("run2");
+      console.log(data);
+      setResults({
+        ipAddress: data.ip,
+        location: data.location.city,
+        region: data.location.region,
+        country: data.location.country,
+        timezone: data.location.timezone,
+        isp: data.isp,
+        lat: data.location.lat,
+        lng: data.location.lng,
+      });
+    }
+  };
+
+    useEffect(() => {
+      console.log("run");
+      // console.log(results.ipAddress);
+      fetchInitialData();
+    }, []);
+  
+  
+  
+
   const ipAddressRegex =
     /\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]).){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b/g
     ;
@@ -77,10 +111,6 @@ export default function Home() {
   };
 
 
-
-  // useEffect(() => {
-  //   console.log(results);
-  // }, [results]);
 
   return (
     <div className="flex flex-col max-h-full">
@@ -148,3 +178,7 @@ export default function Home() {
     </div>
   );
 }
+function fetchInitialhData() {
+  throw new Error("Function not implemented.");
+}
+
