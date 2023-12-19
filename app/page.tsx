@@ -32,7 +32,7 @@ export default function Home() {
     /\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]).){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b/g
     ;
   const domainRegex =
-    /^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$/;
+    /^((?!-))(xn--)?[a-zA-Z0-9][[a-zA-Z0-9-_]{0,61}[[a-zA-Z0-9]{0,1}\.(xn--)?([[a-zA-Z0-9\-]{1,61}|[[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,})$/;
 
   const fetchData = async () => {
     if (ipAddressRegex.test(input) || input === "") {
@@ -55,7 +55,7 @@ export default function Home() {
     } else if (domainRegex.test(input)) {
       setIsValid(true);
       const response = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&domain=${input}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&domain=${input.toLowerCase()}`
       );
       const data = await response.json();
       console.log(data);
