@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://www.frontendmentor.io/solutions/url-shortner-with-nextjs-and-tailwind-css-QYWfeMXlJB](https://www.frontendmentor.io/solutions/url-shortner-with-nextjs-and-tailwind-css-QYWfeMXlJB)
+- Solution URL: [https://www.frontendmentor.io/solutions/ip-address-tracker-with-nextjs-and-tailwind-IV7iboK9Ru](https://www.frontendmentor.io/solutions/ip-address-tracker-with-nextjs-and-tailwind-IV7iboK9Ru
 - Live Site URL: [https://ip-address-tracker-pied-kappa.vercel.app/](https://ip-address-tracker-pied-kappa.vercel.app/)
 
 ## My process
