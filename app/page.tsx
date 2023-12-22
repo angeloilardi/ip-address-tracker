@@ -127,8 +127,9 @@ export default function Home() {
             type="submit"
             className="w-[60px] bg-black rounded-r-lg flex items-center justify-center hover:bg-very-dark-gray"
             onClick={fetchData}
+            aria-label="Search"
           >
-            <Image src="/images/icon-arrow.svg" width={15} height={15} alt="" />
+            <Image src="/images/icon-arrow.svg" width={15} height={15} alt="search" />
           </button>
         </div>
         {/* Error message */}
