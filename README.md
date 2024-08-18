@@ -55,4 +55,3 @@ Users should be able to:
 ## Author
 
 - Website - [https://angelo-ilardi.vercel.app/](https://angelo-ilardi.vercel.app/)
-- Frontend Mentor - [@helldorado82](https://www.frontendmentor.io/profile/helldorado82)
