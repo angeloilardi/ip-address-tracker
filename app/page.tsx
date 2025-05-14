@@ -33,7 +33,7 @@ export default function Home() {
   // retrive Ip address on loading
   async function fetchInitialData() {
     const response = await fetch(
-      `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&ipAddress=`
+      `https://geo.ipify.org/api/v2/country,city?apiKey=at_9z6vrAsAXoFCIufRgFJSwzFneydEA&ipAddress=`
     );
     if (!response.ok) {
       // This will activate the closest `error.js` Error Boundary
@@ -129,7 +129,12 @@ export default function Home() {
             onClick={fetchData}
             aria-label="Search"
           >
-            <Image src="/images/icon-arrow.svg" width={15} height={15} alt="search" />
+            <Image
+              src="/images/icon-arrow.svg"
+              width={15}
+              height={15}
+              alt="search"
+            />
           </button>
         </div>
         {/* Error message */}
