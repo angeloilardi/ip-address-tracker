@@ -68,7 +68,7 @@ export default function Home() {
     if (ipAddressRegex.test(input) || input === "") {
       setIsValid(true);
       const response = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&ipAddress=${input}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_9z6vrAsAXoFCIufRgFJSwzFneydEA&ipAddress=${input}`
       );
 
       const data = await response.json();
