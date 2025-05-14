@@ -85,7 +85,7 @@ export default function Home() {
     } else if (domainRegex.test(input)) {
       setIsValid(true);
       const response = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_sjUEMdBpi0XOaHXCQtD9OrAxekdRY&domain=${input.toLowerCase()}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_9z6vrAsAXoFCIufRgFJSwzFneydEA&domain=${input.toLowerCase()}`
       );
       if (!response.ok) {
         setIsValid(false);
